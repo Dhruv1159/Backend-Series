@@ -17,11 +17,12 @@ const server = http.createServer((req, res) => {
       age: 21,
       occupation: "student",
     };
-    res.end(JSON.stringify(jsonData)); // ✅ Properly formatted JSON
+    res.write(JSON.stringify(jsonData));
+    res.end(); // ✅ Properly formatted JSON
   } else {
     res.statusCode = 404;
-    res.setHeader("Content-Type", "text/plain");
-    res.end("404 Not Found");
+    res.setHeader("Content-Type", "text/html");
+    res.end("<h1>404 Not Found</h1>");
   }
 });
 
